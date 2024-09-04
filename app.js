@@ -1,15 +1,17 @@
-const progress = document.querySelector(".progress");
+const circle = document.querySelector(".progress-circle");
 const loading = document.querySelector(".loading");
 
 let i = 0;
-const fakeUploadPrec = [0, 10, 25, 40, 42, 60, 70, 75, 90, 100];
+const fakeUploaPerc = [0, 10, 25, 40, 42, 60, 70, 75, 90, 100];
+
+const circumference = circle.getTotalLength();
 
 const interval = setInterval(() => {
-    progress.style.width = fakeUploadPrec[i] + "%";
-    loading.innerHTML = fakeUploadPrec[i] + "%";
+    circle.style.strokeDashoffset = circumference - (fakeUploaPerc[i]  / 100) * circumference;
+    loading.innerHTML = fakeUploaPerc[i] + "%";
     i++;
-    if(i == fakeUploadPrec.length){
+    if(i==fakeUploaPerc.length){
         clearInterval(interval);
-        loading.innerHTML = "Completed";
+        loading.innerHTML = "Ok"
     }
 }, 1000);
